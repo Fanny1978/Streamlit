@@ -76,7 +76,7 @@ if page == pages[0] :
   st.write("### :material/target: Objectifs du projet ")
   st.write(":heavy_check_mark: Analyser les tendances concernant les accidents routiers")
   st.write(''':heavy_check_mark: Déterminer une liste de caractéristiques qui déterminent la gravité d'un accident''')
-  st.write('''heavy_check_mark: Prédire la gravité d'un accident''')
+  st.write(''':heavy_check_mark: Prédire la gravité d'un accident''')
   st.write(" ### :material/folder: Sources des données")
   st.write(' :heavy_check_mark: Fichier national des accidents corporels de la circulation dit "Fichier BAAC" (Open data)')
   st.write(''':heavy_check_mark: Période : 2005-2023 pour l'exploration puis période 2019-2023 pour la suite du projet car cette période est mieux renseignée ''')
@@ -92,7 +92,7 @@ if page == pages[1] :
   st.write(''':material/description: Dataset **Véhicules** : décrit les véhicules impliqués dans l'accident (n° plaque immatriculations, type de véhicule, localisation du choc, manœuvre,…)''')
   st.write(''' :material/description: Dataset **Usagers** : décrit les usagers impliqués dans l'accident (place de l'usager dans le véhicule, gravité, trajet de l'usager,…)''')
   st.write(" ##### Jointure des 4 datasets")
-  st.image("jointures des tables.jpg", caption="Les 4 datasets avec leurs liaisons", use_container_width=True)
+  st.image("jointures des tables.jpg", caption="Les 4 datasets avec leurs liaisons", width=600)
   
 
 if page == pages[2] : 
@@ -145,26 +145,26 @@ if page == pages[4] :
 
   with tab2:
     st.header("Data visualisation réalisée sous PowerBI")
-    st.image("Analyse Temporelle par année.jpg", caption="Nombre d'accidents par an", use_container_width=True)
+    st.image("Analyse Temporelle par année.jpg", caption="Nombre d'accidents par an", width=800)
     st.write(''' :date: ***Analyse par an*** : On observe un légère baisse des accidents de 2019 à 2023. La baisse est plus évidente ci-desous sur la période 2005-2023. En 2020 la baisse du nombre d'accidents est dûe à la reduction des déplacement en raison du confinement. ''')
-    st.image("Nb_accidents_par annee_2005_2023.jpg", caption="Nombre d'accidents par an de 2005 à 2023 - Histogramme réalisé sous Python avec Seaborn", use_container_width=True)
+    st.image("Nb_accidents_par annee_2005_2023.jpg", caption="Nombre d'accidents par an de 2005 à 2023 - Histogramme réalisé sous Python avec Seaborn", width=800)
     st.write('''De 2005 à 2023 on observe clairement une baisse du nombre d'accidents annuels. La baisse est importante de 2005 à 2012 puis s'infléchit un peu. Les politiques de prévention routière et les évolutions technologiques ont porté leurs fruits.''')
-    st.image("Analyse Temporelle par mois.jpg", caption="Nombre d'accidents par mois", use_container_width=True)
+    st.image("Analyse Temporelle par mois.jpg", caption="Nombre d'accidents par mois", width=800)
     st.write('***Analyse par mois*** : On observe un phénomène saisonnier. Le nombre d accidents augmentent au cours des mois de Mai, Juin et Juillet puis en Septembre et Octobre. Ces mois sont favorables aux départs en WE et en vacances avec une météo clémente. ')
-    st.image("Analyse Temporelle par jour.jpg", caption="Nombre d'accidents par jour", use_container_width=True)
+    st.image("Analyse Temporelle par jour.jpg", caption="Nombre d'accidents par jour", width=800)
     st.write('''***Analyse sur la semaine*** : On observe un pic d'accidents le vendredi en raison des départs en week-end et des sorties festives. Le dimanche est le jour qui connaît le moins d'accidents.''')
-    st.image("Analyse Temporelle par créneau horaire.jpg", caption="Nombre d'accidents par créneau horaire", use_container_width=True)
+    st.image("Analyse Temporelle par créneau horaire.jpg", caption="Nombre d'accidents par créneau horaire", width=800)
     st.write('''***Analyse sur la journée*** : On obverve un petit pic d'accidents entre 8h et 10h à l'heure de pointe du matin et un pic plus important entre 16h et 20h à l'heure de point du soir.''')
 
   with tab3:
     st.image("Répartition des accidentés par type de gravité.jpg", caption="Zoom sur la gravité",  width=500)
     st.write('''On observe sur ce Pie Chart, la répartition des accidents par gravité : 42 % d’indemnes, 40 % de blessés légers, 15 % de blessés hospitalisés(+24h) et 2,6% de tués (sur le coup ou dans les 30 jours qui suivent l’accident) ''')
-    st.image("répartition des accidents graves selon genre  agglo et type vehicule.jpg", caption="Zoom sur la gravité",  use_container_width=True)
+    st.image("répartition des accidents graves selon genre  agglo et type vehicule.jpg", caption="Zoom sur la gravité",  width=900)
     st.write('''***Ici on considère uniquement les accidents graves (blessés hospitalisés et tués)*** :''')
     st.write('''Sur le 1er Pie-Chart, on observe que les accidents graves sont répartis de la façon suivant selon le genre : 78 % concernent des hommes et 22 % des femmes. ''')
     st.write('''Sur le 2e Pie-Chart, on remarque que les accidents graves ont lieu à 55 % hors agglomération contre 45 % en agglomération. ''')
     st.write('''Sur le 3e Pie-Chart, on voit que 51 % des accidents graves concernent des voitures et 42 % concernent des 2 roues.''')
-    st.image("Top 10 départements avec le plus d'accidents graves.jpg", caption="Zoom sur la gravité",  use_container_width=True)
+    st.image("Top 10 départements avec le plus d'accidents graves.jpg", caption="Zoom sur la gravité",  width=900)
     st.write('''***Ici on considère toujours uniquement les accidents graves (blessés hospitalisés et tués)*** :''')
     st.write('''Les 10 départements où ont lieu le plus d'accidents graves se situent en Ile de France, dans le Nord de la France, dans la région de Lyon-Grenoble, dans la région de Bordeaux et sur la côte méditerranéenne ''')
 
@@ -200,7 +200,7 @@ if page == pages[6] :
   
   st.write('''''')
   st.write(''':heavy_check_mark: Utilisation des méthodes de ***Features importance*** pour déterminer les ***variables explicatives*** ''')
-  st.image("Features Importance avec LightGBM 2.png",caption="Histogramme des Features Importance du modèle LightGBM", use_container_width=True) 
+  st.image("Features Importance avec LightGBM 2.png",caption="Histogramme des Features Importance du modèle LightGBM", width=700) 
   st.write(''':heavy_check_mark: Liste des 22 variables explicatives sélectionnées ''')
   st.image("22 variables.jpg", width=300) 
 
@@ -319,7 +319,7 @@ if page == pages[8] :
   
   st.write("### :hourglass:  Modèle de serie temporelle SARIMA")
   st.write('Prévision du nombre d accidents par type de gravité pour les 6 mois à venir à partir des 6 derniers mois.')
-  st.image("prevision SARIMA.jpg", use_container_width=True)
+  st.image("prevision SARIMA.jpg", width=800)
   st.write('''Ces prévisions pourraient intéresser : ''')
   st.write('''- Les ***autorités locales et nationales*** pour évaluer l'efficacité des politiques de sécurité routière existantes, identifier les périodes où des mesures supplémentaires pouraient être nécessaires. Il s'agirait sur ces périodes de renforcer les contrôles de polices ou lancer des campagnes de sensibilisations ciblées. ''')
   st.write('''- Les ***hôpitaux*** pour anticiper, gérer et planifier les ressources sur les périodes de fortes volumétries d'accidents entrainant des hospitalisation. ''')
