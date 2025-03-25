@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+Pillow
+scikit-learn
+lightgbm
+joblib==1.4.2
