@@ -49,8 +49,9 @@ chemin_caracteristiques=" https://drive.google.com/uc?export=download&id=1yHKtsM
 chemin_vehicules=" https://drive.google.com/uc?export=download&id=1j0GqVV-SDoZ4wujmJuiM8UFSgMUOKqnh "
 chemin_lieux=" https://drive.google.com/uc?export=download&id=1rwkNwarEe0LeEYfh2n6RmXH3GeQ20Gym "
 chemin_usagers=" https://drive.google.com/uc?export=download&id=1TRaBSrx57-ZNexeq7VOdKReKtm2qgifd"
-chemin_fusion = " https://drive.google.com/uc?export=download&id=1E9ZpVoJ7h7DgIXmdx95B7NhzvPOg7bUn "
-chemin_avant_machine_learning =" https://drive.google.com/uc?export=download&id=1wSri1zTwSnJ0obB1hZqFrS6oOsbl3M_p "
+chemin_fusion = " https://drive.google.com/uc?export=download&id=1x11CWtGEA2x_1AGEb73IIhkHPMXRIAnu "
+chemin_avant_machine_learning =" https://drive.google.com/uc?export=download&id=1e25ERNtmEXrIB_ZYB1ELHNBXVJWjCIPR "
+
 
 
 # Chargement des DataFrames avec mise en cache
@@ -63,16 +64,45 @@ df_avant_machine_learning = charger_donnees(chemin_avant_machine_learning)
 st.title("Projet Accidents Routiers en France ")
 
 
+# Définir la largeur de la barre latérale
+sidebar_width = 400  # Largeur en pixels
 
+# Ajouter du code CSS personnalisé
+st.markdown(
+    f"""
+    <style>
+        [data-testid="stSidebar"] {{
+            width: {sidebar_width}px !important;
+        }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Charger l'image 
 image = Image.open("logo-2021.png")
-st.sidebar.image(image, width=200)
+st.sidebar.image(image, width=250)
 st.sidebar.title("Sommaire")
 pages=["Introduction", "Description des données", "Nettoyage et enrichissement des données", "Exploration", "DataVisualisation", "Fusion des 4 datasets et Pre-processing avant Machine Learning", "Modèle de prédiction de la gravité (4 classes)", "Modèle de prédiction binaire de la gravité","Modèle de série temporelle SARIMA", "Conclusion"]
 page=st.sidebar.radio(" ", pages)
+#st.sidebar.markdown("---")  # Ajoute une ligne de séparation
+st.sidebar.markdown("**Auteurs :**")
+
+participants = {
+    "Bassira Ali Alhadji": "https://www.linkedin.com/in/bassira-ali-alhadji-33b778179/",
+    "Fanny Le Jaouen": "https://www.linkedin.com/in/fanny-le-jaouen-b0018b296/",
+    "Christophe Varlet":"https://www.linkedin.com/in/christophevarlet/"
+}
+
+for nom, url in participants.items():
+    st.sidebar.markdown(f"- <a href='{url}' target='_blank'>{nom}</a>", unsafe_allow_html=True)
+
+
+st.sidebar.markdown("Promotion Data Analyst : Janvier 2025")
 
 if page == pages[0] : 
+  st.image("accident 3.jpg", width=500)
+  st.write("Ce projet a été réalisé dans le cadre de notre formation de Data Analyst chez DataScientest.")
   st.write("### :material/target: Objectifs du projet ")
   st.write(":heavy_check_mark: Analyser les tendances concernant les accidents routiers")
   st.write(''':heavy_check_mark: Déterminer une liste de caractéristiques qui déterminent la gravité d'un accident''')
@@ -132,7 +162,7 @@ if page == pages[4] :
 
   with tab1:
     st.header("Data visualisation réalisée sous PowerBI")
-    st.image("Analyse Générale 1.jpg", width=900)
+    st.image("Analyse Générale 1.jpg", width=1000)
     st.write(' :earth_americas: ***Analyse géographique*** : On remarque que les accidentés se concentrent sur les grandes agglomérations : Ile de France, Marseille, Lyon et Bordeaux. ')
     st.write('''Les 2 zones qui concentrent le plus de d'accidents sont l'Ile de France et le Sud-Est.''')
     st.write('''La majorité des accidents ont lieu en agglomération avec 62 % contre 38 % hors agglomération. ''')
@@ -145,16 +175,16 @@ if page == pages[4] :
 
   with tab2:
     st.header("Data visualisation réalisée sous PowerBI")
-    st.image("Analyse Temporelle par année.jpg", caption="Nombre d'accidents par an", width=800)
+    st.image("Analyse Temporelle par année.jpg", caption="Nombre d'accidents par an", width=700)
     st.write(''' :date: ***Analyse par an*** : On observe un légère baisse des accidents de 2019 à 2023. La baisse est plus évidente ci-desous sur la période 2005-2023. En 2020 la baisse du nombre d'accidents est dûe à la reduction des déplacement en raison du confinement. ''')
-    st.image("Nb_accidents_par annee_2005_2023.jpg", caption="Nombre d'accidents par an de 2005 à 2023 - Histogramme réalisé sous Python avec Seaborn", width=800)
-    st.write('''De 2005 à 2023 on observe clairement une baisse du nombre d'accidents annuels. La baisse est importante de 2005 à 2012 puis s'infléchit un peu. Les politiques de prévention routière et les évolutions technologiques ont porté leurs fruits.''')
-    st.image("Analyse Temporelle par mois.jpg", caption="Nombre d'accidents par mois", width=800)
-    st.write('***Analyse par mois*** : On observe un phénomène saisonnier. Le nombre d accidents augmentent au cours des mois de Mai, Juin et Juillet puis en Septembre et Octobre. Ces mois sont favorables aux départs en WE et en vacances avec une météo clémente. ')
-    st.image("Analyse Temporelle par jour.jpg", caption="Nombre d'accidents par jour", width=800)
-    st.write('''***Analyse sur la semaine*** : On observe un pic d'accidents le vendredi en raison des départs en week-end et des sorties festives. Le dimanche est le jour qui connaît le moins d'accidents.''')
-    st.image("Analyse Temporelle par créneau horaire.jpg", caption="Nombre d'accidents par créneau horaire", width=800)
-    st.write('''***Analyse sur la journée*** : On obverve un petit pic d'accidents entre 8h et 10h à l'heure de pointe du matin et un pic plus important entre 16h et 20h à l'heure de point du soir.''')
+    st.image("Nb_accidents_par annee_2005_2023.jpg", caption="Nombre d'accidents par an de 2005 à 2023 - Histogramme réalisé sous Python avec Seaborn", width=700)
+    st.write(''':date: De 2005 à 2023 on observe clairement une baisse du nombre d'accidents annuels. La baisse est importante de 2005 à 2012 puis s'infléchit un peu. Les politiques de prévention routière et les évolutions technologiques ont porté leurs fruits.''')
+    st.image("Analyse Temporelle par mois.jpg", caption="Nombre d'accidents par mois", width=700)
+    st.write(':date: ***Analyse par mois*** : On observe un phénomène saisonnier. Le nombre d accidents augmentent au cours des mois de Mai, Juin et Juillet puis en Septembre et Octobre. Ces mois sont favorables aux départs en WE et en vacances avec une météo clémente. ')
+    st.image("Analyse Temporelle par jour.jpg", caption="Nombre d'accidents par jour", width=700)
+    st.write(''':date: ***Analyse sur la semaine*** : On observe un pic d'accidents le vendredi en raison des départs en week-end et des sorties festives. Le dimanche est le jour qui connaît le moins d'accidents.''')
+    st.image("Analyse Temporelle par créneau horaire.jpg", caption="Nombre d'accidents par créneau horaire", width=700)
+    st.write(''':date: ***Analyse sur la journée*** : On obverve un petit pic d'accidents entre 8h et 10h à l'heure de pointe du matin et un pic plus important entre 16h et 20h à l'heure de point du soir.''')
 
   with tab3:
     st.image("Répartition des accidentés par type de gravité.jpg", caption="Zoom sur la gravité",  width=500)
@@ -181,14 +211,14 @@ if page == pages[5] :
   st.write(':material/info: La fusion a été faite sur les données de 2019 à 2023 de France Métropolitaine car les données antérieures comptaient beaucoup de valeurs manquantes et certaines variables n étaient pas remplies de la même façon avant 2019. Et les données des DOM comportaient un fort taux de valeurs manquantes pour plusieurs variables.')
   st.write(' :heavy_check_mark: 1ère étape : Fusion des datasets **Véhicules** et **Usagers** sur la clé **id_vehicule**')
   st.write(':heavy_check_mark: 2e étape : Fusion avec les 2 autres datasets **Caracteristiques** et **Lieux** sur la clé **Num_acc**')
-  st.write('Dataset Fusionné (2019-2023)')
-  st.dataframe(df_fusion.head(10))
-  st.write(df_fusion.shape)
+  #st.write('Dataset Fusionné (2019-2023)')
+  #st.dataframe(df_fusion.head(10))
+  #st.write(df_fusion.shape)
   st.write("### Pre-processing avant Machine Learning ")
   st.write(':heavy_check_mark: Suppression des Labels')
   st.write(':heavy_check_mark: Simplification par réduction du nombre de catégories de certaines variables')
   st.write(':heavy_check_mark: Les variables sont des variables catégorielles numériques')
-  st.write('Dataset pre-processé avant Machine Learning')
+  st.write('Dataset fusionné et pre-processé avant Machine Learning (2019-2023)')
   st.dataframe(df_avant_machine_learning.head(10))
   st.write(df_avant_machine_learning.shape)
 if page == pages[6] : 
@@ -196,7 +226,7 @@ if page == pages[6] :
   st.write('''***Objectif : réaliser un modèle pour prédire la gravité d'un accident à partir d'une liste de caractéristiques de l'accident***''')
   st.write(''':heavy_check_mark: La ***variable cible*** est la ***gravité*** qui prend 4 valeurs selon le niveau de gravité : ***indemne, blessé léger, blessé hospitalisé et tué*** ''')
   st.write(''':heavy_check_mark: Il s'agit d'un ***problème de classification multiclasse supervisée*** ''')
-  st.image("Les 4 classes grav.jpg", caption="Variable cible", width=400) 
+  st.image("Les 4 classes grav.jpg", caption="Variable cible", width=300) 
   
   st.write('''''')
   st.write(''':heavy_check_mark: Utilisation des méthodes de ***Features importance*** pour déterminer les ***variables explicatives*** ''')
@@ -218,8 +248,8 @@ if page == pages[6] :
   st.image("matrice confusion_4_classes.jpg", caption="Matrice de confusion du modèle LightGBM avec les meilleurs hyperparamètres et avec pondération.", width=500) 
   st.write('''Les métriques ***rappel de la classe 2*** et ***rappel de la classe 3*** ainsi que le ***rappel global*** ont été particulièrement suivis en raison du déséquilibre de la variable cible. D'autant plus que les classes déséquilibrées les ***tués*** et les ***blessés hospitalisés*** sont des classes importantes à bien prédire.''')
   st.image("Performances Light GBM_4_classes.jpg", caption="Performances du modèle LightGBM avec les meilleurs hyperparamètres et avec pondération de classe.", width=300) 
-  st.write('''Le  ***rappel de la classe 2*** est passé de 0,1 à 0,55 en utilisant la pondération de classe, ce qui est une belle amélioration. ''')
-  st.write('''La performance du modèle sélectionné reste cependant modeste avec un ***rappel de 0.63*** et un ***F1 Score de 0,64*** ''')
+  st.write(''' :heavy_check_mark: Le  ***rappel de la classe 2*** est passé de 0,1 à 0,55 en utilisant la pondération de classe, ce qui est une belle amélioration. ''')
+  st.write(''':heavy_check_mark: La performance du modèle sélectionné reste cependant modeste avec un ***rappel de 0.63*** et un ***F1 Score de 0,64*** ''')
   st.write('''Pour améliorer le modèle, il pourrait être intéressant de ''')
   st.write('''- Tester d'autres méthodes de rééquilibrage des classes comme le RandomOverSampler par exemple.''')
   st.write('''- D’augmenter le volume des données en ajoutant les données de 2024 pour tenter d’augmenter les performances du modèle.''')
@@ -311,9 +341,9 @@ if page == pages[7] :
  
   st.write(''':heavy_check_mark: Application de la ***pondération de classe*** : la classe 1 (accident grave) est minoritaire.''')
   st.image("Matrice confusion Variable cible binaire2.jpg", caption="Matrice de confusion du modèle LightGBM binaire avec les meilleurs hyperparamètres et avec pondération.", width=500) 
-  st.write('''Les métriques ***rappel des classes*** et  ***rappel global*** ont été particulièrement suivis en raison du déséquilibre de la variable cible.''')
+  st.write(''':heavy_check_mark: Les métriques ***rappel des classes*** et  ***rappel global*** ont été particulièrement suivis en raison du déséquilibre de la variable cible.''')
   st.write('''Le  ***rappel global*** est de **0,79** (contre 0,63 pour le modèle à 4 classes) et le F1 Score est de **0,70** (contre 0,64 pour le modèle à 4 classes). ''')
-  st.write('''Les performances du modèle sont nettement meilleures que celles du modèle à 4 classes.  ''')
+  st.write('''**Les performances du modèle sont nettement meilleures que celles du modèle à 4 classes.**  ''')
 
 if page == pages[8] : 
   
@@ -326,13 +356,24 @@ if page == pages[8] :
   st.write('''- Les ***compagnies d'assurance*** pour anticiper les fluctuations du nombre de sinistres et ajuster leurs provisions en conséquence. Cela leur permettrait de mieux gérer les risques finaciers liés aux accidents de la route.''')
 
 if page == pages[9] : 
+  st.image("accident1.jpg", width=400)
   st.write("### :heavy_check_mark: Conclusion")
-  st.write(''' ''')
-  st.write('''Les performances du modèle avec une **variable cible à 4 classes** restent modestes avec un ***rappel de 0.63*** et un ***F1Score de 0,64***. Avec plus de temps nous aurions pu tester d'autres méthodes de rééquilibrage des classes et continuer l'optimisation du modèle pour obtenir de meilleures performances.''')
-  st.write('''Les performances du modèle avec une **variable cible binaire** sont nettement meilleures avec un ***rappel de 0.79*** et un ***F1Score de 0,70***. ''')
-  st.write('''De plus la prise en compte des données de 2024 qui vont bientôt être disponibles pourraient participer à augmenter les performances des modèles.''')
-  st.write(''' ''')
-  st.write('''Ce projet de **Data Analyse** sur les accidents routiers en France a été une expérience enrichissante et formatrice dans le cadre de la **formation de Data Analyst** chez **DataScientest**. Il a été l’occasion de mettre en pratique les connaissances en Python, de maîtriser les techniques de nettoyage et de prétraitement des données, de Data Visualisation et de se familiariser avec les algorithmes de Machine Learning.
+  
+  st.write('''#### Bilan du projet ''')
+  st.write('''Nous avons mis en place un modèle pour **prédire la gravité d’un accident routier** en combinant **un traitement avancé des données** et **un modèle optimisé de Machine Learning**.''')
+  st.write('''En mettant en œuvre un **pré-traitement rigoureux**, comprenant **la gestion des valeurs manquantes** et **l'enrichissement des données**, nous avons optimiser la qualité du jeu de données et améliorer leur **impact sur la prédiction de la gravité**. ''')
+  st.write('''**Les résultats des modèles** : ''')
+  st.write("<b><u>Modèle prédictif avec une variable cible à 4 classes</u> </b>", unsafe_allow_html=True)
+  st.write('''-  **Rappel de 0.63** ''')
+  st.write('''-  **F1 Score de 0,64** ''')
+  st.write('''Les performances de ce modèle avec une **variable cible à 4 classes** restent modestes avec un ***rappel de 0.63*** et un ***F1 Score de 0,64***. Avec plus de temps nous aurions pu tester d'autres méthodes de rééquilibrage des classes et continuer l'optimisation du modèle pour obtenir de meilleures performances.''')
+  st.write("<b><u>Modèle prédictif avec une variable cible binaire</u> </b>", unsafe_allow_html=True)
+  st.write('''-  **Rappel de 0.79** ''')
+  st.write('''-  **F1 Score de 0,70** ''')
+  st.write('''Les performances de ce modèle avec **variable cible binaire** sont nettement meilleures avec un ***rappel de 0.79*** et un ***F1 Score de 0,70***. ''')
+  st.write('''La prise en compte des données de 2024 qui vont bientôt être disponibles pourraient participer à augmenter les performances des modèles.''')
+  st.write('''#### Ce que ce projet nous a apporté ''')
+  st.write('''Ce projet de **Data Analyse** sur les accidents routiers en France a été une expérience enrichissante et formatrice dans le cadre de la **formation de Data Analyst** chez **DataScientest**. Il a été l’occasion de mettre en pratique nos connaissances en Python, de maîtriser les techniques de nettoyage et de prétraitement des données, de Data Visualisation et de se familiariser avec les algorithmes de Machine Learning.
 Au-delà des compétences techniques acquises, ce projet a révélé le potentiel de l'analyse de données pour apporter des solutions concrètes à des problèmes sociétaux importants, comme la sécurité routière.
 Ce projet a été une combinaison réussie de travail individuel et collectif, où chaque membre de l'équipe a pu exprimer son potentiel tout en contribuant à l'objectif commun. ''')
   st.write('''Ce projet a été une étape clé dans notre parcours d'équipe de Data Analysts, et nous sommes tous enthousiastes à l'idée d'appliquer les connaissances et les compétences acquises ici à de futurs défis en entreprise.''')
