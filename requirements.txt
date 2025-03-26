@@ -4,6 +4,6 @@ numpy
 matplotlib
 seaborn
 Pillow
-scikit-learn
+scikit-learn==1.5.1
 lightgbm
 joblib==1.4.2
