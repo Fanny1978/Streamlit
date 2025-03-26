@@ -68,7 +68,7 @@ chemin_caracteristiques=" https://drive.google.com/uc?export=download&id=1yHKtsM
 chemin_vehicules=" https://drive.google.com/uc?export=download&id=1j0GqVV-SDoZ4wujmJuiM8UFSgMUOKqnh "
 chemin_lieux=" https://drive.google.com/uc?export=download&id=1rwkNwarEe0LeEYfh2n6RmXH3GeQ20Gym "
 chemin_usagers=" https://drive.google.com/uc?export=download&id=1TRaBSrx57-ZNexeq7VOdKReKtm2qgifd"
-chemin_fusion = " https://drive.google.com/uc?export=download&id=1x11CWtGEA2x_1AGEb73IIhkHPMXRIAnu "
+#chemin_fusion = " https://drive.google.com/uc?export=download&id=1x11CWtGEA2x_1AGEb73IIhkHPMXRIAnu "
 chemin_avant_machine_learning =" https://drive.google.com/uc?export=download&id=1e25ERNtmEXrIB_ZYB1ELHNBXVJWjCIPR "
 
 
