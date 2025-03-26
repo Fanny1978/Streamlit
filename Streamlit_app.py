@@ -15,25 +15,34 @@ from sklearn.preprocessing import LabelEncoder
 def load_model(model_path):
     try:
         return joblib.load(model_path)
+    except FileNotFoundError:
+        st.error(f"Fichier de modèle non trouvé : {model_path}")
+        return None
     except Exception as e:
         st.error(f"Une erreur s'est produite lors du chargement du modèle : {e}")
-        return None
+        return None    
 
 model = load_model('lgbm_best_model.joblib') 
 
-# Charger le rapport de classification depuis le fichier CSV
-df_report = pd.read_csv('classification_report.csv', index_col=0)
-
-# Charger la matrice de confusion depuis le fichier CSV
-df_cm = pd.read_csv('confusion_matrix.csv', index_col=0)
 
 
 print(lgb.__version__)
 # Charger les données de test 
 # Si vous n'en avez pas, vous pourrez utiliser des entrées manuelles
+
 @st.cache_data
 def load_test_data(data_path):
-    return pd.read_csv(data_path)
+    try:
+        return pd.read_csv(data_path)
+    except FileNotFoundError:
+        st.error(f"Fichier de test non trouvé : {data_path}")
+        return None
+    except pd.errors.EmptyDataError:
+        st.error(f"Le fichier de test {data_path} est vide.")
+        return None
+    except Exception as e:
+        st.error(f"Une erreur s'est produite lors du chargement du fichier de test: {e}")
+        return None
 
 # Données de test 
 test_data = load_test_data('accidents_fictifs_numeriques_reorganise.csv')
@@ -42,7 +51,17 @@ test_data = load_test_data('accidents_fictifs_numeriques_reorganise.csv')
 @st.cache_data
 def charger_donnees(chemin_fichier):
     """Charge un fichier CSV et le retourne dans un DataFrame."""
-    return pd.read_csv(chemin_fichier)
+    try:
+        return pd.read_csv(chemin_fichier)
+    except FileNotFoundError:
+        st.error(f"Fichier non trouvé : {chemin_fichier}")
+        return None
+    except pd.errors.EmptyDataError:
+        st.error(f"Le fichier {chemin_fichier} est vide.")
+        return None
+    except Exception as e:
+        st.error(f"Une erreur s'est produite lors du chargement de {chemin_fichier}: {e}")
+        return None
 
 # Chemins des fichiers CSV
 chemin_caracteristiques=" https://drive.google.com/uc?export=download&id=1yHKtsMHsHnKSr-qOMuw8YflJXl14qI5g "
