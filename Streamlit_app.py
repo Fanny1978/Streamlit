@@ -48,7 +48,7 @@ def load_test_data(data_path):
 test_data = load_test_data('accidents_fictifs_numeriques_reorganise.csv')
 
 
-@st.cache_data(ttl=6*3600)
+@st.cache_data(ttl=1*3600)
 def charger_donnees(chemin_fichier):
     """Charge un fichier CSV et le retourne dans un DataFrame."""
     try:
