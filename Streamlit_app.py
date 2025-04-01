@@ -64,10 +64,10 @@ def charger_donnees(chemin_fichier):
         return None
 
 # Chemins des fichiers CSV
-chemin_caracteristiques=" https://drive.google.com/uc?export=download&id=1yHKtsMHsHnKSr-qOMuw8YflJXl14qI5g "
-chemin_vehicules=" https://drive.google.com/uc?export=download&id=1j0GqVV-SDoZ4wujmJuiM8UFSgMUOKqnh "
-chemin_lieux=" https://drive.google.com/uc?export=download&id=1rwkNwarEe0LeEYfh2n6RmXH3GeQ20Gym "
-chemin_usagers=" https://drive.google.com/uc?export=download&id=1TRaBSrx57-ZNexeq7VOdKReKtm2qgifd"
+chemin_caracteristiques=" https://drive.google.com/uc?export=download&id=1Am6LtB3P_5wU6Z8D-vfKhUSTxHmLldA0 "
+chemin_vehicules=" https://drive.google.com/uc?export=download&id=1_xiZzLNWnNKy6sI1GqCbh9iy0jzgibs5 "
+chemin_usagers=" https://drive.google.com/uc?export=download&id=1tw1POGC9XSZxx8ls_heGIRkP_olQ7zGs "
+chemin_lieux=" https://drive.google.com/uc?export=download&id=1qV6EjOMSt59c8Ar-xCV-wHVc92QY3qxY "
 chemin_avant_machine_learning =" https://drive.google.com/uc?export=download&id=1e25ERNtmEXrIB_ZYB1ELHNBXVJWjCIPR "
 
 
@@ -154,22 +154,22 @@ if page == pages[2] :
 
 if page == pages[3] :
   st.write("### :material/search: Exploration")
-  st.write('Les datasets présentés concernent la période 2019-2023 car sur la période 2005-2023 la volumétrie engendrait une saturation de Streamlit')
+  st.write('''Les datasets présentés concernent l'année 2023 car sur la période 2005-2023 la volumétrie engendrait une saturation de Streamlit''')
   st.write(' ')
-  st.write('Dataset Caractéristiques (2019-2023)')
+  st.write('Dataset Caractéristiques 2023')
   st.dataframe(df_caracteristiques.head(10))
   st.write(df_caracteristiques.shape)
 
-  st.write('Dataset Véhicules (2019-2023)')
+  st.write('Dataset Véhicules 2023')
   st.dataframe(df_vehicules.head(10))
   st.write(df_vehicules.shape)
  
 
-  st.write('Dataset Lieux (2019-2023)')
+  st.write('Dataset Lieux 2023')
   st.dataframe(df_lieux.head(10))
   st.write(df_lieux.shape)
  
-  st.write('Dataset Usagers (2019-2023)')
+  st.write('Dataset Usagers 2023')
   st.dataframe(df_usagers.head(10))
   st.write(df_usagers.shape)
 
