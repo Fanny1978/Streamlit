@@ -11,7 +11,7 @@ import joblib
 import os
 from sklearn.preprocessing import LabelEncoder
 
-@st.cache_data(ttl=6*3600)
+@st.cache_data()
 def load_model(model_path):
     try:
         return joblib.load(model_path)
@@ -30,7 +30,7 @@ print(lgb.__version__)
 # Charger les données de test 
 # Si vous n'en avez pas, vous pourrez utiliser des entrées manuelles
 
-@st.cache_data(ttl=6*3600)
+@st.cache_data()
 def load_test_data(data_path):
     try:
         return pd.read_csv(data_path)
@@ -48,7 +48,7 @@ def load_test_data(data_path):
 test_data = load_test_data('accidents_fictifs_numeriques_reorganise.csv')
 
 
-@st.cache_data(ttl=1*3600)
+@st.cache_data()
 def charger_donnees(chemin_fichier):
     """Charge un fichier CSV et le retourne dans un DataFrame."""
     try:
